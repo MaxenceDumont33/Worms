@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private int speed = 10;
     [SerializeField]
     Rigidbody bear;
-    private void Start()
+    private void OnEnable()
     {
         InputManager.instance.onKeyDPressStarted += MovementRight;
         InputManager.instance.onKeyDPressCanceled += StopMovementToTheRight;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         InputManager.instance.onKeySpacePressStarted += Jump;
     }
     
-    private void OnDestroy()
+    private void OnDisable()
     {
         InputManager.instance.onKeyDPressStarted -= MovementRight;
         InputManager.instance.onKeyDPressCanceled -= StopMovementToTheRight;

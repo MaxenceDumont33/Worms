@@ -6,18 +6,14 @@ public class DividePower : MonoBehaviour
 
     private GameObject bear;
 
-    private void Start()
-    {
-        InputManager.instance.onKeyMPressStarted += Divide;
-    }
-
-    private void OnDestroy()
+    private void OnDisable()
     {
         InputManager.instance.onKeyMPressStarted -= Divide;
     }
 
     private void OnEnable()
     { 
+        InputManager.instance.onKeyMPressStarted += Divide;
         bear = Versus.Instance.currentBear;
         DivideHasBeenUse = true;
     }
@@ -32,6 +28,8 @@ public class DividePower : MonoBehaviour
             newBear.GetComponent<Bear>().ChangeSize();
             newBear.GetComponent<Bear>().team = bear.GetComponent<Bear>().team;
             newBear.GetComponent<Bear>().SetTeamColor();
+            newBear.GetComponent<HealtText>().ChangeHealtText(newBear);
+            newBear.GetComponent<HealtText>().healtText.transform.rotation = Quaternion.Euler(0, 0, 0);
             if (newBear.GetComponent<Bear>().team == 1)
             {
                 Versus.Instance.player1Bear.Enqueue(newBear);
