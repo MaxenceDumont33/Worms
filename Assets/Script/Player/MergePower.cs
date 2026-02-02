@@ -11,13 +11,10 @@ public class MergePower : MonoBehaviour
    private void OnEnable()
    {
       bear = Versus.Instance.currentBear;
-   }
-   private void Start()
-   {
       InputManager.instance.onKeyFPressStarted += Merge;
    }
 
-   private void OnDestroy()
+   private void OnDisable()
    {
       InputManager.instance.onKeyFPressStarted -= Merge;
    }
